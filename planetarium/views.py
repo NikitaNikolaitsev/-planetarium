@@ -1,7 +1,13 @@
-# planetarium/views.py
-
 from rest_framework import viewsets
-from .models import ShowTheme, AstronomyShow, PlanetariumDome, ShowSession, Reservation, Ticket
+from .models import (
+    ShowTheme,
+    AstronomyShow,
+    PlanetariumDome,
+    ShowSession,
+    Reservation,
+    Ticket,
+)
+
 from planetarium.serializers import (
     ShowThemeSerializer,
     AstronomyShowSerializer,
