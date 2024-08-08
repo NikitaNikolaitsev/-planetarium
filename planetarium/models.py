@@ -1,5 +1,9 @@
+import pathlib
+import uuid
+
 from django.db import models
 from django.conf import settings
+from django.template.defaultfilters import slugify
 
 
 class ShowTheme(models.Model):
@@ -10,10 +14,16 @@ class ShowTheme(models.Model):
         return self.title
 
 
+def image_path(instance, filename):
+    filename = f"{slugify(instance.info)}-{uuid.uuid4()}" + pathlib.Path(filename).suffix
+    return pathlib.Path("upload/image/") / pathlib.Path(filename)
+
+
 class AstronomyShow(models.Model):
     title = models.CharField(max_length=200)
     themes = models.ManyToManyField(ShowTheme, related_name='astronomy_shows')
     description = models.TextField()
+    image = models.ImageField(null=True, upload_to='image_path')
 
 
 class PlanetariumDome(models.Model):
