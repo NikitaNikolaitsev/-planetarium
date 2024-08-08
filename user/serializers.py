@@ -6,10 +6,10 @@ from django.utils.translation import gettext as _
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ("id", "username", "email", "first_name", "last_name")
+        fields = ("id", "email", "first_name", "last_name",  "password",)
         read_only_fields = ("id",)
         extra_kwargs = {
-            "password": {"<PASSWORD>": True, "write_only": True,"min_length": 5},
+            "password": {"write_only": True, "min_length": 5}
         }
 
         def create(self, validated_data):
