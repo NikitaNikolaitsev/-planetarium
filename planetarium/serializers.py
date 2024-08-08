@@ -21,7 +21,7 @@ class AstronomyShowSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AstronomyShow
-        fields = ['id', 'title', 'themes', 'description']
+        fields = ['id', 'title', 'themes', 'description', "image"]
 
 
 class PlanetariumDomeSerializer(serializers.ModelSerializer):
