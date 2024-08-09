@@ -78,7 +78,6 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
         tickets_available=(F("planetarium_dome__rows") * F("planetarium_dome__seats_in_row") - Count("tickets"))
     )
     serializer_class = ShowSessionSerializer
-    # Permission removed here to allow access to all
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -88,7 +87,7 @@ class ShowSessionViewSet(viewsets.ModelViewSet):
     @action(
         methods=["GET"],
         detail=False,
-        permission_classes=[IsAuthenticated],  # If this action needs authentication
+        permission_classes=[IsAuthenticated],
     )
     def nearest_show(self, request):
         now = datetime.now()
