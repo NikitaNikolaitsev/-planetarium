@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model, authenticate
-from rest_framework import serializers, permissions, viewsets
+from rest_framework import serializers
 from django.utils.translation import gettext as _
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ("id", "email", "first_name", "last_name",  "password",)
+        fields = ("id", "email", "username", "password",)
         read_only_fields = ("id",)
         extra_kwargs = {
             "password": {"write_only": True, "min_length": 5}
