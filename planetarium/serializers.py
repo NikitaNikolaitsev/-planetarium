@@ -17,11 +17,13 @@ class ShowThemeSerializer(serializers.ModelSerializer):
 
 
 class AstronomyShowSerializer(serializers.ModelSerializer):
-    themes = ShowThemeSerializer(many=True, read_only=True)
+    show_theme = serializers.SlugRelatedField(
+        many=False, read_only=True, slug_field="name"
+    )
 
     class Meta:
         model = AstronomyShow
-        fields = ['id', 'title', 'themes', 'description', "image"]
+        fields = ("id", "title", "show_theme")
 
 
 class PlanetariumDomeSerializer(serializers.ModelSerializer):
@@ -39,12 +41,21 @@ class ShowSessionSerializer(serializers.ModelSerializer):
         fields = ['id', 'astronomy_show', 'planetarium_dome', 'show_time']
 
 
+class AstronomyShowRetrieveSerializer(AstronomyShowSerializer):
+    class Meta:
+        model = AstronomyShow
+        fields = AstronomyShowSerializer.Meta.fields + ("description",)
+
+
 class ReservationSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True)
+    created_at = serializers.SerializerMethodField()
 
     class Meta:
         model = Reservation
-        fields = ['id', 'created_at', 'user']
+        fields = ("id", "created_at")
+
+    def get_created_at(self, obj):
+        return obj.formatted_created_at
 
 
 class TicketSerializer(serializers.ModelSerializer):
@@ -54,3 +65,26 @@ class TicketSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
         fields = ['id', 'row', 'seats', 'show', 'reservation']
+
+
+class TicketRetrieveSerializer(TicketSerializer):
+    show_session = ShowSessionSerializer(read_only=True)
+    reservation = ReservationSerializer(read_only=True)
+
+
+class ShowSessionTicketSerializer(serializers.ModelSerializer):
+    show_title = serializers.SlugRelatedField(
+        source="astronomy_show",
+        many=False,
+        read_only=True,
+        slug_field="title",
+    )
+    planetarium_dome = serializers.SlugRelatedField(
+        many=False,
+        read_only=True,
+        slug_field="name",
+    )
+
+    class Meta:
+        model = ShowSession
+        fields = ("show_title", "planetarium_dome")
