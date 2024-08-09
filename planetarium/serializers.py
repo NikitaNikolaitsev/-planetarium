@@ -71,6 +71,10 @@ class TicketRetrieveSerializer(TicketSerializer):
     show_session = ShowSessionSerializer(read_only=True)
     reservation = ReservationSerializer(read_only=True)
 
+    class Meta:
+        model = Ticket
+        fields = ['id', 'row', 'seats', 'show_session', 'reservation']
+
 
 class ShowSessionTicketSerializer(serializers.ModelSerializer):
     show_title = serializers.SlugRelatedField(
