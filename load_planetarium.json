@@ -1,0 +1,164 @@
+[
+    {
+        "model": "planetarium.showtheme",
+        "pk": 1,
+        "fields": {
+            "title": "Galaxies",
+            "description": "Explore the wonders of distant galaxies and the mysteries they hold."
+        }
+    },
+    {
+        "model": "planetarium.showtheme",
+        "pk": 2,
+        "fields": {
+            "title": "Black Holes",
+            "description": "Learn about the most powerful forces in the universe: black holes."
+        }
+    },
+    {
+        "model": "planetarium.showtheme",
+        "pk": 3,
+        "fields": {
+            "title": "The Solar System",
+            "description": "An overview of the planets, moons, and other celestial bodies in our solar system."
+        }
+    },
+    {
+        "model": "planetarium.astronomyshow",
+        "pk": 1,
+        "fields": {
+            "title": "Journey through the Universe",
+            "description": "A comprehensive show that takes you on a journey through the known universe.",
+            "themes": [1, 2],
+            "image": "upload/image/journey-through-the-universe-123e4567-e89b-12d3-a456-426614174000.jpg"
+        }
+    },
+    {
+        "model": "planetarium.astronomyshow",
+        "pk": 2,
+        "fields": {
+            "title": "Mysteries of Black Holes",
+            "description": "Dive into the enigmatic world of black holes, exploring their formation, structure, and impact on the universe.",
+            "themes": [2],
+            "image": "upload/image/mysteries-of-black-holes-123e4567-e89b-12d3-a456-426614174001.jpg"
+        }
+    },
+    {
+        "model": "planetarium.astronomyshow",
+        "pk": 3,
+        "fields": {
+            "title": "Exploring the Solar System",
+            "description": "A fascinating journey through our solar system, highlighting the unique features of each planet and their moons.",
+            "themes": [3],
+            "image": "upload/image/exploring-the-solar-system-123e4567-e89b-12d3-a456-426614174002.jpg"
+        }
+    },
+    {
+        "model": "planetarium.planetariumdome",
+        "pk": 1,
+        "fields": {
+            "name": "Main Dome",
+            "rows": 10,
+            "seats_in_row": 30
+        }
+    },
+    {
+        "model": "planetarium.planetariumdome",
+        "pk": 2,
+        "fields": {
+            "name": "East Wing Dome",
+            "rows": 8,
+            "seats_in_row": 25
+        }
+    },
+    {
+        "model": "planetarium.planetariumdome",
+        "pk": 3,
+        "fields": {
+            "name": "West Wing Dome",
+            "rows": 12,
+            "seats_in_row": 35
+        }
+    },
+    {
+        "model": "planetarium.showsession",
+        "pk": 1,
+        "fields": {
+            "astronomy_show": 1,
+            "planetarium_dome": 1,
+            "show_time": "2024-08-09T18:30:00Z"
+        }
+    },
+    {
+        "model": "planetarium.showsession",
+        "pk": 2,
+        "fields": {
+            "astronomy_show": 2,
+            "planetarium_dome": 2,
+            "show_time": "2024-08-10T20:00:00Z"
+        }
+    },
+    {
+        "model": "planetarium.showsession",
+        "pk": 3,
+        "fields": {
+            "astronomy_show": 3,
+            "planetarium_dome": 3,
+            "show_time": "2024-08-11T15:00:00Z"
+        }
+    },
+    {
+        "model": "planetarium.reservation",
+        "pk": 1,
+        "fields": {
+            "created_at": "2024-08-08T12:00:00Z",
+            "user": 1
+        }
+    },
+    {
+        "model": "planetarium.reservation",
+        "pk": 2,
+        "fields": {
+            "created_at": "2024-08-09T14:30:00Z",
+            "user": 2
+        }
+    },
+    {
+        "model": "planetarium.reservation",
+        "pk": 3,
+        "fields": {
+            "created_at": "2024-08-10T09:00:00Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "planetarium.ticket",
+        "pk": 1,
+        "fields": {
+            "row": 5,
+            "seats": 15,
+            "show": 1,
+            "reservation": 1
+        }
+    },
+    {
+        "model": "planetarium.ticket",
+        "pk": 2,
+        "fields": {
+            "row": 2,
+            "seats": 10,
+            "show": 2,
+            "reservation": 2
+        }
+    },
+    {
+        "model": "planetarium.ticket",
+        "pk": 3,
+        "fields": {
+            "row": 8,
+            "seats": 20,
+            "show": 3,
+            "reservation": 3
+        }
+    }
+]
